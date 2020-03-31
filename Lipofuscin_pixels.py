@@ -2,7 +2,5 @@
 """
 Created on Thu Feb 20 04:16:50 2020
 
-@author: JRCLUST
+@author: Amrita Singh
 """
-
-
