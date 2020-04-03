@@ -2,7 +2,7 @@
 """
 Created on Thu Feb 27 15:11:16 2020
 
-Filter an image with a 2D difference of gaussians filter
+Filter a 2D image with a 2D difference of gaussians filter
 
 @author: Amrita Singh
 """
@@ -11,8 +11,9 @@ import matplotlib.pyplot as plt
 from scipy.stats import norm
 from skimage.filters import gaussian
 
+from scipy.stats import norm
 
-def diff_gauss(sigma_small, sigma_large, img, do_plot = 1):
+def diff_gauss(sigma_small, sigma_large, img, plot_kernel = 0):
 
     #sigma_large = 10 # In pixels
     #sigma_small = 3 # In pixels
@@ -23,15 +24,13 @@ def diff_gauss(sigma_small, sigma_large, img, do_plot = 1):
     large = norm.pdf(x, scale = sigma_large)
     diff = small - large
 
-    n = img.shape[0]
     im_diff = np.zeros(img.shape)
 
-    for plane in range(n):
-        im_filt_large = gaussian(img[plane, :, :], sigma = sigma_large)
-        im_filt_small = gaussian(img[plane, :, :], sigma = sigma_small)
-        im_diff[plane, :, :] = im_filt_small - im_filt_large
+    im_filt_large = gaussian(img, sigma = sigma_large)
+    im_filt_small = gaussian(img, sigma = sigma_small)
+    im_diff = im_filt_small - im_filt_large
 
-    if do_plot:
+    if plot_kernel:
 
         plt.figure()
         plt.plot(x, diff, label = 'diff')
