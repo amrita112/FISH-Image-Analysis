@@ -56,14 +56,14 @@ def images(data_path, metadata_file, viewer, planes = None, genes = None, colors
                             colormap = colors[g], blending = 'additive')
 
 def filt_images(data_path, metadata_file, viewer, planes = None, genes = None, colors = ['red', 'green', 'blue', 'magenta'],
-            image_type = 'filt'):
+            image_type = 'lipo_filt'):
     """ Render raw images in napari viewer. Image type = 'raw' (default) or 'filt'.
     Default colors: ['red', 'green', 'blue', 'magenta']"""
     t0 = time.time()
     # Load metadata
     with open('{0}{1}{2}'.format(data_path, sep, metadata_file), 'rb') as f:
         metadata = pkl.load(f)
-    if image_type == 'filt':
+    if image_type == 'lipo_filt':
         image_path = metadata['filt_image_path']
     if genes == None:
         genes = metadata['genes']
